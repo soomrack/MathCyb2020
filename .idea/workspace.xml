@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Blockchain" targetName="Blockchain" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b0aca801-9394-4118-98f1-bc2cbe412b70" name="Default Changelist" comment="Написала класс Tranche с timestamp, hash, data (transactions), nounce. В качестве hash сейчас метод, конкатенирующий timestamp, data и nounce. Далее нужно в hash добавить хэш-функцию." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Salakhova" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="Salakhova" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="soomrack" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="MathCyb2020" />
+  </component>
+  <component name="ProjectId" id="1hDRcHklaCQUWbeNsFMa4LiiB8g" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Blockchain" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Blockchain" TARGET_NAME="Blockchain" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Blockchain" RUN_TARGET_NAME="Blockchain">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Эльвира\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b0aca801-9394-4118-98f1-bc2cbe412b70" name="Default Changelist" comment="" />
+      <created>1599543753936</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599543753936</updated>
+      <workItem from="1599543756149" duration="4798000" />
+    </task>
+    <task id="LOCAL-00001" summary="Написала класс Tranche с timestamp, hash, data (transactions), nounce. В качестве hash сейчас метод, конкатенирующий timestamp, data и nounce. Далее нужно в hash добавить хэш-функцию.">
+      <created>1599546610415</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1599546610415</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Написала класс Tranche с timestamp, hash, data (transactions), nounce. В качестве hash сейчас метод, конкатенирующий timestamp, data и nounce. Далее нужно в hash добавить хэш-функцию." />
+    <option name="LAST_COMMIT_MESSAGE" value="Написала класс Tranche с timestamp, hash, data (transactions), nounce. В качестве hash сейчас метод, конкатенирующий timestamp, data и nounce. Далее нужно в hash добавить хэш-функцию." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="309" y="134" key="#Notifications" timestamp="1599547450411">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="309" y="134" key="#Notifications/0.0.1093.614@0.0.1093.614" timestamp="1599547450411" />
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1599548001269">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1093.614@0.0.1093.614" timestamp="1599548001269" />
+    <state x="327" y="52" key="FileChooserDialogImpl" timestamp="1599548613821">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="327" y="52" key="FileChooserDialogImpl/0.0.1093.614@0.0.1093.614" timestamp="1599548613821" />
+    <state x="339" y="186" key="Github.CreatePullRequestDialog" timestamp="1599547656888">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="339" y="186" key="Github.CreatePullRequestDialog/0.0.1093.614@0.0.1093.614" timestamp="1599547656888" />
+    <state width="1049" height="141" key="GridCell.Tab.0.bottom" timestamp="1599546863877">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state width="1049" height="141" key="GridCell.Tab.0.bottom/0.0.1093.614@0.0.1093.614" timestamp="1599546863877" />
+    <state width="1049" height="141" key="GridCell.Tab.0.center" timestamp="1599546863877">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state width="1049" height="141" key="GridCell.Tab.0.center/0.0.1093.614@0.0.1093.614" timestamp="1599546863877" />
+    <state width="1049" height="141" key="GridCell.Tab.0.left" timestamp="1599546863877">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state width="1049" height="141" key="GridCell.Tab.0.left/0.0.1093.614@0.0.1093.614" timestamp="1599546863877" />
+    <state width="1049" height="141" key="GridCell.Tab.0.right" timestamp="1599546863877">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state width="1049" height="141" key="GridCell.Tab.0.right/0.0.1093.614@0.0.1093.614" timestamp="1599546863877" />
+    <state x="139" y="43" key="Vcs.Push.Dialog.v2" timestamp="1599548168471">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="139" y="43" key="Vcs.Push.Dialog.v2/0.0.1093.614@0.0.1093.614" timestamp="1599548168471" />
+    <state x="369" y="224" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599548076087">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="369" y="224" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1093.614@0.0.1093.614" timestamp="1599548076087" />
+    <state x="377" y="101" key="svn.repositoryBrowser" timestamp="1599546830160">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="377" y="101" key="svn.repositoryBrowser/0.0.1093.614@0.0.1093.614" timestamp="1599546830160" />
+    <state x="354" y="94" key="svn4idea.import.options" timestamp="1599546828843">
+      <screen x="0" y="0" width="1093" height="614" />
+    </state>
+    <state x="354" y="94" key="svn4idea.import.options/0.0.1093.614@0.0.1093.614" timestamp="1599546828843" />
+  </component>
+</project>
