@@ -11,6 +11,7 @@
 #include <cstdint>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
