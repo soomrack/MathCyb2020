@@ -16,7 +16,10 @@ using namespace std;
 class Blockchain
 {
 public:
-    Blockchain();
+    Blockchain();     //макет конструктора
+
+    void addBlock(Block block);
+
     vector<Block> chain;
     void addBlock(Block block);
 };
