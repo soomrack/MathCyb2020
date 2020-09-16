@@ -1,19 +1,20 @@
 #include <iostream>
-#include "Blockchain.h"
+
+#include "lib/blockchain_tools/blockchain.h"
 
 using namespace std;
 
 int main() {
-    Blockchain bChain = Blockchain();
+    auto *block_chain = new Blockchain();
 
     cout << "Mining block 1..." << endl;
-    bChain.AddBlock(Block(1, "Block 1 Data"));
+    block_chain->addBlock(Block("block 1 Data" ) );
 
     cout << "Mining block 2..." << endl;
-    bChain.AddBlock(Block(2, "Block 2 Data"));
+    block_chain->addBlock(Block("block 2 Data" ) );
 
     cout << "Mining block 3..." << endl;
-    bChain.AddBlock(Block(3, "Block 3 Data"));
+    block_chain->addBlock(Block("block 3 Data" ) );
 
     return 0;
 }

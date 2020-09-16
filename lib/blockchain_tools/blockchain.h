@@ -1,12 +1,10 @@
-//
-// Created by Sergey on 16.09.2020.
-//
+/// @file blockchain.h
+/// @brief описание блокчейна
 
 #ifndef MATHCYB2020_BLOCKCHAIN_H
 #define MATHCYB2020_BLOCKCHAIN_H
 
-
-#include "Block.h"
+#include "block.h"
 
 #include <cstdint>
 #include <iostream>
@@ -15,14 +13,12 @@
 
 using namespace std;
 
-class Blockchain {
+class Blockchain
+{
 public:
     Blockchain();
-
-    void addBlock(Block block);
-
     vector<Block> chain;
+    void addBlock(Block block);
 };
-
 
 #endif //MATHCYB2020_BLOCKCHAIN_H

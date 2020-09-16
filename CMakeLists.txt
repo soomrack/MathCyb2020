@@ -3,4 +3,23 @@ project(MathCyb2020)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(MathCyb2020 main.cpp Block.h Blockchain.h)
+find_package(Boost 1.73.0)
+
+if(Boost_FOUND)
+
+    message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+    message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
+    message(STATUS "Boost_VERSION: ${Boost_VERSION}")
+
+    include_directories(${Boost_INCLUDE_DIRS})
+
+endif()
+
+
+add_executable(MathCyb2020 main.cpp lib/blockchain_tools/block.h lib/blockchain_tools/blockchain.h)
+
+if(Boost_FOUND)
+
+    target_link_libraries(MathCyb2020 ${Boost_LIBRARIES})
+
+endif()
