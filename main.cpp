@@ -4,7 +4,6 @@
 #include <ctime>
 #include <list>
 #include <fstream>
-#include <vector>
 
 using namespace std;
 
@@ -24,8 +23,9 @@ Block::Block() = default;
 Block::Block(const string & name, const string & data, uint64_t hash, uint64_t nounce) {}
 
 class BlockChain {
+
 private:
-    static vector<Block> chain;
+    list<Block> block_chain;
 public:
 
     /*
@@ -37,10 +37,10 @@ public:
     /*
      * Интерфейс
     */
-    static vector<Block> push(const Block& newTail); //Добавление блока в конец
-    static vector<Block> pop(); //Удаление последнего блока из цепи, возвращает остаток цепочки
-    static void print_last_messages(int n); //Печать последних n сообщений
-    static int chain_length(); // Длина цепи
+    list<Block> push(const Block& newTail); //Добавление блока в конец
+    list<Block> pop(); //Удаление последнего блока из цепи, возвращает остаток цепочки
+    void print_last_messages(int n); //Печать последних n сообщений
+    int chain_length(); // Длина цепи
     /*
      * Работа с файлами
      */
@@ -49,40 +49,40 @@ public:
 };
 
 BlockChain::BlockChain() = default;
-BlockChain::BlockChain(const Block& block) {chain.push_back(block);}
-BlockChain::BlockChain(const list<Block>& block) {}
+BlockChain::BlockChain(const Block & block) { block_chain.push_back(block); }
+BlockChain::BlockChain(const list<Block> & block) {}
 
 int BlockChain::chain_length() {
-    return chain.size();
+    return this->block_chain.size();
 }
 
-vector<Block> BlockChain::push(const Block& newTail) {
-    chain.push_back(newTail);
-    return chain;
+list<Block> BlockChain::push(const Block & newTail) {
+    this->block_chain.push_back(newTail);
+    return this->block_chain;
 }
 
-vector<Block> BlockChain::pop() {
-   chain.pop_back();
-   return chain;
+list<Block> BlockChain::pop() {
+    this->block_chain.pop_back();
+    return this->block_chain;
 }
 
 void BlockChain::print_last_messages(int n) {}
 
-void BlockChain::Save_to_file(FILE *file) {
-    if(!file) {
-       cout << "Invalid name, saving -> BlockChain_saver.txt" << endl;
-       ofstream output("BlockChain_saver.txt");
+void BlockChain::Save_to_file(FILE * file) {
+    if (!file) {
+        cout << "Invalid name, saving -> BlockChain_saver.txt" << endl;
+        ofstream output("BlockChain_saver.txt");
     }
     else
         ofstream output(file);
 
-//    for (auto i = chain.begin(); i != chain.end() ; ++i) {
-//
-//    }
+    //    for (auto i = chain.begin(); i != chain.end() ; ++i) {
+    //
+    //    }
 }
 
-void BlockChain::Load_from_file(FILE *file) {
-    if(file){
+void BlockChain::Load_from_file(FILE * file) {
+    if (file) {
         //DOSMTH
     }
     else
