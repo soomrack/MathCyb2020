@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/moroz/Documents/GitHub/MathCyb2020/main.cpp
+iostream
+-
+string
+-
+cstdint
+-
+ctime
+-
+list
+-
+fstream
+-
+vector
+-
+
