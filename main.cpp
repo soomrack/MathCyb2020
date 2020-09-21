@@ -4,7 +4,7 @@
 #include <ctime>
 #include <list>
 #include <fstream>
-#include<vector>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +25,7 @@ Block::Block(const string & name, const string & data, uint64_t hash, uint64_t n
 
 class BlockChain {
 private:
-    static list<Block> chain;
+    vector<Block> chain;
 public:
 
     /*
@@ -93,6 +93,6 @@ string make_hash(){ // hash_function
 
 int main() {
 
-    
+
     return 0;
 }
