@@ -96,12 +96,12 @@ list<Block> BlockChain::pop() {
 void BlockChain::print_last_messages(int n) {
     auto i = this->block_chain.begin();
     if(chain_length() >= n)
-        advance(i, n);
+        advance(i, chain_length() - n);
     else
-        cout << "chain_length() < n" << endl;
+        cout << "chain_length() < n, output = all" << endl;
 
     for (; i != block_chain.end() ; i++) {
-        cout << i->return_message();
+        cout << i->return_message() << endl;
     }
 }
 
@@ -139,7 +139,7 @@ void BlockChain::Load_from_file(const string &file_name) {
             uint64_t nounce{}, hash{};
             time_t time_stamp{};
 
-            file >> message >> name >> nounce >> hash >> time_stamp;
+            file >> name >> message >> nounce >> hash >> time_stamp;
             Block newB(name, message, hash, nounce, time_stamp);
                 this->block_chain.push_back(newB);
         }
@@ -176,7 +176,6 @@ int main() {
     chain2.Load_from_file(file_name_load);
     chain2.Save_to_file(file_name_save);
     cout << chain2.chain_length() << endl;
-    //cout << chain2.
-
+    chain2.print_last_messages(3);
     return 0;
 }
