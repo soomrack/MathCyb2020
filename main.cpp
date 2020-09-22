@@ -19,7 +19,7 @@ public:
     Tranche(const Tranche &tranche);
 
 private:
-    ~Tranche();
+    ~Tranche(); // деструктор
 };
 
 class Blockchain {
@@ -30,10 +30,13 @@ public:
     Blockchain();
 
 private:
-    ~Blockchain();
+    ~Blockchain();// деструктор
 
 public:
-    int push(const Tranche new_tail); //добавляет новый блок к концу блокчейна
+    int push(const Tranche new_tail){ //добавляет новый блок к концу сhain
+        chain.push_back(new_tail);
+    };
+
     Tranche pop(); // Удаляет хвостовой блок из цепочки и возвращает его
 
 public:
@@ -45,6 +48,8 @@ public:
     int print_last_message(const int n); // Выводит на консоль сообщения из крайних n блоков
     // и количество выведенных сообщений
 };
+
+
 //хэш-функция(не дописанная): записывает в строку данные блока.
 string myhash(Tranche &block){
     string str;
