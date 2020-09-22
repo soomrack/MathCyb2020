@@ -13,13 +13,14 @@ struct Tranche{
     string transactions;
     uint64_t nounce;
     uint64_t hashValue;
+
 public:
     Tranche();
     Tranche(const string transactions, const uint64_t nounce, const uint64_t hashValue);
     Tranche(const Tranche &tranche);
 
-private:
-    ~Tranche(); // деструктор
+public:
+    ~Tranche();// деструктор
 };
 
 class Blockchain {
@@ -35,9 +36,15 @@ private:
 public:
     int push(const Tranche new_tail){ //добавляет новый блок к концу сhain
         chain.push_back(new_tail);
+        return 0;
     };
 
-    Tranche pop(); // Удаляет хвостовой блок из цепочки и возвращает его
+    Tranche pop(){ // Удаляет хвостовой блок из цепочки и возвращает его
+        _List_iterator<Tranche> i = chain.end();
+        Tranche tail_block(*i); //здесь CLion попросил сделать деструктор Tranche public вместо private
+        chain.pop_back();
+        return tail_block;
+    };
 
 public:
     int save_to_file(const string filename);
