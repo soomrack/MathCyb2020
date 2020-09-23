@@ -4,7 +4,9 @@
 
 using namespace std;
 
-Block::Block(string Nm, string Dt, int Nnc, string PrHsh): Name(Nm),Data(Dt), Nounce(Nnc), PrevHash(PrHsh){
+Block::Block(){Name = "UNKNOWN"; Data = "NAN"; Nounce = 0; PrevHash = 0;};
+
+Block::Block(string Nm, string Dt, uint64_t Nnc, uint64_t PrHsh): Name(Nm),Data(Dt), Nounce(Nnc), PrevHash(PrHsh){
     TimeStamp = time(nullptr);
 }
 ostream& operator<<(ostream &out, const Block &block) {
@@ -15,3 +17,4 @@ ostream& operator<<(ostream &out, const Block &block) {
 
     return out;
 }
+Block::~Block()=default;

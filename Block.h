@@ -7,17 +7,22 @@
 
 #include<iostream>
 #include<string>
+#include<cstdint>
+
 using namespace std;
 
 class Block {
 private:
     string Name;
     string Data;
-    int Nounce;
     time_t TimeStamp;
-    string PrevHash;
+
 public:
-    Block(string Name, string Dt, int Nnc, string PrHsh);
+    uint64_t Nounce;
+    uint64_t PrevHash;
+    Block();
+    Block(string Name, string Dt, uint64_t Nnc, uint64_t PrHsh);
+    ~Block();
     friend ostream& operator<< (ostream &out, const Block &block);
 
 };
