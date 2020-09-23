@@ -33,7 +33,7 @@ int Blockchain::saveToFile( std::string file_name )
     {
         std::for_each( chain.begin(), chain.end(), [] ( const auto &item )
         {
-            out << item.nounce << ' ' << item.timestamp << ' ' << item.hash << ' ' << item.message;
+            // TODO Сергей сделать запись в файл
         } );
         out << '\n';
     }
@@ -49,7 +49,7 @@ int Blockchain::loadFromFile( std::string file_name )
     {
         while ( getline( in, line ) )
         {
-            //TODO разбить строку на слова и поместить в новый блок
+            //TODO Сергей разбить строку на слова и поместить в новый блок
         }
     }
     in.close();
@@ -57,9 +57,10 @@ int Blockchain::loadFromFile( std::string file_name )
 
 int Blockchain::printLastMessages( int n )
 {
+    // TODO Михаил сделать ограничение на n, если список меньше
     std::for_each( chain.rbegin(), chain.rend(), [] ( const auto &item )
     {
-        std::cout << item.message << ' ';
+        std::cout << ' ';
     } );
     std::cout << std::endl;
 }

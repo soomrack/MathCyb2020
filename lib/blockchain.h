@@ -8,7 +8,7 @@
 
 #include "block.h"
 
-class Blockchain
+class Blockchain : public Block
 {
 private:
     std::list<Block> chain;
