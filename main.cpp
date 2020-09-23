@@ -6,7 +6,7 @@
 #include <fstream>
 #include <tuple>
 using namespace std;
-
+//добавить описание
 struct Block {
 private:
     string message, name;
@@ -16,8 +16,8 @@ public:
     /*
      * Конструкторы и Деструкторы
      */
-    Block();
-    ~Block();
+    Block() = default;
+    ~Block() = default;
     explicit Block(const string& name, const string& message, uint64_t hash, uint64_t nounce,time_t time_stamp);
     /*
      * Интерфейс блока
@@ -32,9 +32,7 @@ public:
     //Block(Block& block);
 };
 
-Block::Block() = default;
-Block::~Block() = default;
-Block::Block(const string & name, const string & message, uint64_t hash, uint64_t nounce,time_t time_stamp) {
+Block::Block(const string & name, const string & message,const uint64_t hash,const uint64_t nounce,const time_t time_stamp) {
     this->name = name;
     this->message = message;
     this->hash = hash;
@@ -50,32 +48,30 @@ public:
     /*
      *Конструкторы и Деструкторы
     */
-    BlockChain();
-    ~BlockChain();
+    BlockChain() = default;
+    ~BlockChain() = default;
     explicit BlockChain(const Block& block);
     explicit BlockChain(const list<Block>& new_chain);
     /*
      * Интерфейс
     */
     list<Block> push(const Block& newTail); //Добавление блока в конец "этой" цепи
-    list<Block> pop(); //Удаление последнего блока из "этой" цепи, возвращает остаток цепочки
+    list<Block> pop(); //Удаление последнего блока из "этой" цепи, возвращает остаток цепочки // нужно удалить последний блок и вернуть его же
     void print_last_messages(int n); //Печать последних n сообщений "этой" цепи
     int chain_length(); // Длина "этой" цепи
     /*
      * Работа с файлами
      */
-    void Save_to_file(const string &file_name); // Сохранение в файл цепи(цепей)
-    void Load_from_file(const string &file_name); // Загрузка цепи(цепей) из файла
+    //нужно сделать INT TODO
+    void save_to_file(const string &file_name); // Сохранение в файл цепи(цепей)
+    void load_from_file(const string &file_name); // Загрузка цепи(цепей) из файла
 };
-
-BlockChain::BlockChain() = default;
-BlockChain::~BlockChain() = default;
 BlockChain::BlockChain(const Block & block) { this->block_chain.push_back(block); }
 BlockChain::BlockChain(const list<Block> & new_chain) {
-    auto i = new_chain.begin();
-    while(i != new_chain.end()){
-        this->block_chain.push_back(*i);
-        i++;
+    auto index = new_chain.begin();
+    while(index != new_chain.end()){
+        this->block_chain.push_back(*index);
+        index++;
     }
 }
 
@@ -110,7 +106,7 @@ void BlockChain::print_last_messages(int n) {
  *    <string> name, <string> message, <uint64_t> nounce, <uint64_t> hash ,<time_t> time_stamp
  *    Данная строка есть 1 блок.
  */
-void BlockChain::Save_to_file(const string &file_name) {
+void BlockChain::save_to_file(const string &file_name) {
     string new_file_name;
     if (file_name.empty()) {
         cout << "Invalid name, saving -> BlockChain_saver.txt" << endl;
@@ -126,7 +122,7 @@ void BlockChain::Save_to_file(const string &file_name) {
     output.close();
 }
 
-void BlockChain::Load_from_file(const string &file_name) {
+void BlockChain::load_from_file(const string &file_name) {
     if (file_name.empty()) {
         cerr << "There is no file!";
     }
@@ -148,7 +144,7 @@ void BlockChain::Load_from_file(const string &file_name) {
 
 
 /*
- * Hash function
+ * Hash function TODO
  */
 string make_hash(){
     return "none\n";
@@ -173,8 +169,8 @@ int main() {
     string file_name_save = "BlockChain_saver.txt";
     string file_name_load = "BlockChain_loader.txt";
 
-    chain2.Load_from_file(file_name_load);
-    chain2.Save_to_file(file_name_save);
+    chain2.load_from_file(file_name_load);
+    chain2.save_to_file(file_name_save);
     cout << chain2.chain_length() << endl;
     chain2.print_last_messages(3);
     return 0;
