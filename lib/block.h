@@ -9,15 +9,12 @@
 
 class Block
 {
-private:
+public:
     uint64_t nounce; // параметр proof-of-work
     time_t timestamp; // время создания блока
     uint64_t hash; // хэш предыдущего блока, либо 0 для первого блока
-
-protected:
     std::string message; // данные, хранящиеся в блоке
 
-public:
     /// @brief конструктор по умолчанию
     Block();
 
