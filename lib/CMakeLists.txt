@@ -1,4 +1,8 @@
 cmake_minimum_required (VERSION 3.17)
-project (math_cyb_libs)
+project (lib)
 
-add_subdirectory( blockchain_tools )
+set(SOURCE_LIB
+        src/block.cpp
+        src/blockchain.cpp)
+
+add_library(lib STATIC ${SOURCE_LIB})
