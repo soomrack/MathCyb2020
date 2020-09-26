@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/moroz/Documents/GitHub/MathCyb2020/block.cpp" "C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug/CMakeFiles/MathCyb2020.dir/block.cpp.obj"
+  "C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.cpp" "C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug/CMakeFiles/MathCyb2020.dir/blockchain.cpp.obj"
   "C:/Users/moroz/Documents/GitHub/MathCyb2020/main.cpp" "C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug/CMakeFiles/MathCyb2020.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")

@@ -124,6 +124,60 @@ MathCyb2020\fast:
 	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\build
 .PHONY : MathCyb2020\fast
 
+block.obj: block.cpp.obj
+
+.PHONY : block.obj
+
+# target to build an object file
+block.cpp.obj:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\block.cpp.obj
+.PHONY : block.cpp.obj
+
+block.i: block.cpp.i
+
+.PHONY : block.i
+
+# target to preprocess a source file
+block.cpp.i:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\block.cpp.i
+.PHONY : block.cpp.i
+
+block.s: block.cpp.s
+
+.PHONY : block.s
+
+# target to generate assembly for a file
+block.cpp.s:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\block.cpp.s
+.PHONY : block.cpp.s
+
+blockchain.obj: blockchain.cpp.obj
+
+.PHONY : blockchain.obj
+
+# target to build an object file
+blockchain.cpp.obj:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\blockchain.cpp.obj
+.PHONY : blockchain.cpp.obj
+
+blockchain.i: blockchain.cpp.i
+
+.PHONY : blockchain.i
+
+# target to preprocess a source file
+blockchain.cpp.i:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\blockchain.cpp.i
+.PHONY : blockchain.cpp.i
+
+blockchain.s: blockchain.cpp.s
+
+.PHONY : blockchain.s
+
+# target to generate assembly for a file
+blockchain.cpp.s:
+	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\blockchain.cpp.s
+.PHONY : blockchain.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -160,6 +214,12 @@ help:
 	@echo ... MathCyb2020
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... block.obj
+	@echo ... block.i
+	@echo ... block.s
+	@echo ... blockchain.obj
+	@echo ... blockchain.i
+	@echo ... blockchain.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

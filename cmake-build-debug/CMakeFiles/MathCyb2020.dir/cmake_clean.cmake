@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MathCyb2020.dir/block.cpp.obj"
+  "CMakeFiles/MathCyb2020.dir/blockchain.cpp.obj"
   "CMakeFiles/MathCyb2020.dir/main.cpp.obj"
   "MathCyb2020.exe"
   "MathCyb2020.exe.manifest"

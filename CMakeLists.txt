@@ -13,4 +13,4 @@ add_executable(MathCyb2020
         .idea/vcs.xml
         .idea/workspace.xml
         main.cpp
-        readme.txt)
+        readme.txt block.h block.cpp blockchain.cpp blockchain.h)

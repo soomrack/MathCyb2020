@@ -75,12 +75,12 @@ preinstall:
 CMakeFiles\MathCyb2020.dir\all:
 	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\depend
 	$(MAKE) -f CMakeFiles\MathCyb2020.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target MathCyb2020"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target MathCyb2020"
 .PHONY : CMakeFiles\MathCyb2020.dir\all
 
 # Build rule for subdir invocation for target.
 CMakeFiles\MathCyb2020.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles 4
 	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) CMakeFiles\MathCyb2020.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles\MathCyb2020.dir\rule

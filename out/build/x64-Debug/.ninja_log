@@ -1,0 +1,8 @@
+# ninja log v5
+37	631	622827097	CMakeFiles/MathCyb2020.dir/block.cpp.obj	85ee1fc7f12f34ae
+72	665	622827097	CMakeFiles/MathCyb2020.dir/main.cpp.obj	cead78456040cc90
+0	658	622827139	CMakeFiles/MathCyb2020.dir/blockchain.cpp.obj	741ef4271746b5d4
+660	1453	622827140	MathCyb2020.exe	53882a7591691a85
+30	1129	622828113	CMakeFiles/MathCyb2020.dir/main.cpp.obj	cead78456040cc90
+0	1145	622828113	CMakeFiles/MathCyb2020.dir/blockchain.cpp.obj	741ef4271746b5d4
+1146	1705	622828114	MathCyb2020.exe	53882a7591691a85

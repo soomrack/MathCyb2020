@@ -77,17 +77,59 @@ CMakeFiles\MathCyb2020.dir\main.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\MathCyb2020.dir\main.cpp.s /c C:\Users\moroz\Documents\GitHub\MathCyb2020\main.cpp
 <<
 
+CMakeFiles\MathCyb2020.dir\block.cpp.obj: CMakeFiles\MathCyb2020.dir\flags.make
+CMakeFiles\MathCyb2020.dir\block.cpp.obj: ..\block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MathCyb2020.dir/block.cpp.obj"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\MathCyb2020.dir\block.cpp.obj /FdCMakeFiles\MathCyb2020.dir\ /FS -c C:\Users\moroz\Documents\GitHub\MathCyb2020\block.cpp
+<<
+
+CMakeFiles\MathCyb2020.dir\block.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathCyb2020.dir/block.cpp.i"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe > CMakeFiles\MathCyb2020.dir\block.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\moroz\Documents\GitHub\MathCyb2020\block.cpp
+<<
+
+CMakeFiles\MathCyb2020.dir\block.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathCyb2020.dir/block.cpp.s"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\MathCyb2020.dir\block.cpp.s /c C:\Users\moroz\Documents\GitHub\MathCyb2020\block.cpp
+<<
+
+CMakeFiles\MathCyb2020.dir\blockchain.cpp.obj: CMakeFiles\MathCyb2020.dir\flags.make
+CMakeFiles\MathCyb2020.dir\blockchain.cpp.obj: ..\blockchain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MathCyb2020.dir/blockchain.cpp.obj"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\MathCyb2020.dir\blockchain.cpp.obj /FdCMakeFiles\MathCyb2020.dir\ /FS -c C:\Users\moroz\Documents\GitHub\MathCyb2020\blockchain.cpp
+<<
+
+CMakeFiles\MathCyb2020.dir\blockchain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathCyb2020.dir/blockchain.cpp.i"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe > CMakeFiles\MathCyb2020.dir\blockchain.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\moroz\Documents\GitHub\MathCyb2020\blockchain.cpp
+<<
+
+CMakeFiles\MathCyb2020.dir\blockchain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathCyb2020.dir/blockchain.cpp.s"
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\MathCyb2020.dir\blockchain.cpp.s /c C:\Users\moroz\Documents\GitHub\MathCyb2020\blockchain.cpp
+<<
+
 # Object files for target MathCyb2020
 MathCyb2020_OBJECTS = \
-"CMakeFiles\MathCyb2020.dir\main.cpp.obj"
+"CMakeFiles\MathCyb2020.dir\main.cpp.obj" \
+"CMakeFiles\MathCyb2020.dir\block.cpp.obj" \
+"CMakeFiles\MathCyb2020.dir\blockchain.cpp.obj"
 
 # External object files for target MathCyb2020
 MathCyb2020_EXTERNAL_OBJECTS =
 
 MathCyb2020.exe: CMakeFiles\MathCyb2020.dir\main.cpp.obj
+MathCyb2020.exe: CMakeFiles\MathCyb2020.dir\block.cpp.obj
+MathCyb2020.exe: CMakeFiles\MathCyb2020.dir\blockchain.cpp.obj
 MathCyb2020.exe: CMakeFiles\MathCyb2020.dir\build.make
 MathCyb2020.exe: CMakeFiles\MathCyb2020.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MathCyb2020.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MathCyb2020.exe"
 	"C:\Program Files\JetBrains\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\MathCyb2020.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1424~1.283\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\MathCyb2020.dir\objects1.rsp @<<
  /out:MathCyb2020.exe /implib:MathCyb2020.lib /pdb:C:\Users\moroz\Documents\GitHub\MathCyb2020\cmake-build-debug\MathCyb2020.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

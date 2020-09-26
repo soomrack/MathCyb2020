@@ -102,6 +102,18 @@
 		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/.idea/workspace.xml">
 			<Option target="MathCyb2020"/>
 		</Unit>
+		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/block.cpp">
+			<Option target="MathCyb2020"/>
+		</Unit>
+		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/block.h">
+			<Option target="MathCyb2020"/>
+		</Unit>
+		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.cpp">
+			<Option target="MathCyb2020"/>
+		</Unit>
+		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.h">
+			<Option target="MathCyb2020"/>
+		</Unit>
 		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/main.cpp">
 			<Option target="MathCyb2020"/>
 		</Unit>
