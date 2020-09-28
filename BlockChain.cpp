@@ -6,12 +6,12 @@
 
 BlockChain::BlockChain() {
     Chain.emplace_back(Block(0, "Genesis Block"));
-    Difficulty = 6;
+//    Difficulty = 6;
 }
 
 void BlockChain::AddBlock(Block B_New) {
     B_New.prev_hash = GetLastBlock().GetHash();
-    B_New.MiningBlock(Difficulty);
+//    B_New.MiningBlock(Difficulty);
     Chain.push_back(B_New);
 }
 
