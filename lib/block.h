@@ -24,6 +24,13 @@ public:
     /// @param message данные, хранящиеся в блоке
     Block( const uint64_t nounce, const uint64_t hash, const std::string message );
 
+    /// @brief констурктор с параметрами, устанавливающий параметр времени создания timestamp
+    /// @param nounce параметр proof-of-work
+    /// @param timestamp время создания блока
+    /// @param hash хэш предыдущего блока, либо 0 для первого блока
+    /// @param message данные, хранящиеся в блоке
+    Block( const uint64_t nounce, const time_t timestamp, const uint64_t hash, const std::string message );
+
     /// @brief конструктор копирования
     /// @param ссылка на копируемый блок
     Block( const Block &block );

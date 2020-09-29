@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 #include "blockchain.h"
 
@@ -25,13 +24,10 @@ int main()
     auto *fifth = new Block( 0, fourth->getHash(), std::string( "This is fifth block" ));
     block_chain->push( *fifth );
 
-    block_chain->printLastMessages(3 );
+    block_chain->saveToFile( "temp.txt" );
 
+    block_chain->loadFromFile("temp.txt" );
 
-
-
-
-
-
+    block_chain->saveToFile( "temp.txt" );
     return 0;
 }
