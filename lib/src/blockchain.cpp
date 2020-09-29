@@ -57,11 +57,29 @@ int Blockchain::loadFromFile( std::string file_name )
 
 int Blockchain::printLastMessages( int n )
 {
-    std::cout << chain.back().message;
-    // TODO Михаил сделать ограничение на n, если список меньше
-    std::for_each( chain.rbegin(), chain.rend(), [] ( const Block &item )
+
+    if(n >= chain.size())
     {
-         std::cout << item.message << ' ';
-    } );
-    std::cout << std::endl;
+        std::for_each(chain.rend(), chain.rbegin(), [](const Block &item)
+        {
+            std::cout << item.message << ' ';
+        });
+        std::cout << std::endl;
+    }
+    else
+    {
+        auto it = chain.rbegin();
+        std::advance(it, chain.size() - n);
+
+        std::for_each(chain.rend(), it, [](const Block &item)
+        {
+            std::cout << item.message << ' ';
+        });
+        std::cout << std::endl;
+
+    }
 }
+
+
+
+
