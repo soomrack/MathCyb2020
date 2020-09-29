@@ -30,6 +30,10 @@ public:
 
     /// @brief деструктор
     ~Block();
+
+    /// @brief функция получения хэша текущего блока
+    /// @return хэш SHA 256 текущего блока
+    uint64_t getHash();
 };
 
 #endif //MATHCYB2020_BLOCK_H

@@ -18,3 +18,9 @@ Block::~Block()
 {
 
 }
+
+uint64_t Block::getHash()
+{
+    // TODO сделать импелментацию подсчета хэша
+    return 25;
+}

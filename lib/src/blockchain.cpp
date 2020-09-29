@@ -57,26 +57,23 @@ int Blockchain::loadFromFile( std::string file_name )
 
 int Blockchain::printLastMessages( int n )
 {
-
-    if(n >= chain.size())
+    // если запрашиваемое число блоков больше чем есть в цепи, то выводим все
+    if( n >= chain.size() )
     {
-        std::for_each(chain.rend(), chain.rbegin(), [](const Block &item)
+        std::for_each(chain.rbegin(), chain.rend(), []( const Block &block )
         {
-            std::cout << item.message << ' ';
+            std::cout << block.message << std::endl;
         });
-        std::cout << std::endl;
     }
     else
     {
-        auto it = chain.rbegin();
-        std::advance(it, chain.size() - n);
+        auto end = chain.rend();
+        std::advance( end, n + 1 );
 
-        std::for_each(chain.rend(), it, [](const Block &item)
+        std::for_each( chain.rbegin(), end, []( const Block &block )
         {
-            std::cout << item.message << ' ';
+            std::cout << block.message << std::endl;
         });
-        std::cout << std::endl;
-
     }
 }
 
