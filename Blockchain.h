@@ -32,6 +32,7 @@ public:
     int print_last_messages(int n);
     friend ostream& operator<< (ostream &out, const Blockchain &chain);
 
+
 };
 
 

@@ -24,7 +24,7 @@ public:
     Block(string Name, string Dt, uint64_t Nnc, uint64_t PrHsh);
     ~Block();
     friend ostream& operator<< (ostream &out, const Block &block);
-
+    friend istream& operator>>(istream &in, Block &block);
 };
 
 

@@ -4,6 +4,9 @@
 
 #include "Blockchain.h"
 #include <stdexcept>
+#include<fstream>
+#include<iterator>
+#include<algorithm>
 
 using namespace std;
 
@@ -31,36 +34,24 @@ Blockchain::~Blockchain(){
 
 int  Blockchain::len(){return chain.size();}
 
-uint64_t Blockchain::hash(Block block){ // TO DO
+uint64_t Blockchain::hash(Block block){ // TODO
     return 33;
 }
 
 int Blockchain::add(Block block){
-    try
-    {
-        if(block.PrevHash != hash(pop()))
-        {throw -1;}
-        if (block.Nounce >= M)
-        {throw -2;}
+    if(block.PrevHash != hash(chain[chain.size() - 1]))
+        {return -1;}
+    if (block.Nounce >= M)
+        {return -2;}
 
-        chain.push_back(block);
-    }
-    catch(int exc){
-        if(exc == -1){cout << "wrong hash"<<endl;}
-        if(exc == -2){cout << "no proof of work"<<endl;}
-        return exc;
-    }
-    catch(exception &exc)
-    {
-        cout<<exc.what()<<endl;
-        return -3;
-    }
+    chain.push_back(block);
     return 0;
 }
 
-// should delete from chain?
+
 Block Blockchain::pop(){
     Block block = chain[chain.size() - 1];
+    chain.pop_back();
     return block;
 }
 
@@ -80,4 +71,25 @@ ostream& operator<<(ostream &out, const Blockchain &chain){
         out<<chain.chain[i]<<endl;
     }
     return out;
+}
+
+int Blockchain::save_to_file(string filename) {
+    ofstream output_file;
+    output_file.open(filename, std::ios_base::trunc);
+    if(output_file.fail())
+        std::cout<<"unable to open the file"<<endl;
+//    ostream_iterator<Blockchain> output_iterator(output_file, "\n");
+//    copy(chain.begin(), chain.end(), output_iterator);
+    for(const auto &e : chain) output_file << e << "\n";
+//    output_file<<"hello";
+    output_file.close();
+    return 0;
+}
+
+int Blockchain::load_from_file(string filename) {
+    ifstream is(filename);
+    istream_iterator<Block> start(is), end;
+    vector<Block> chain_(start, end);
+    chain = chain_;
+    return 0;
 }

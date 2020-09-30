@@ -11,10 +11,15 @@ Block::Block(string Nm, string Dt, uint64_t Nnc, uint64_t PrHsh): Name(Nm),Data(
 }
 ostream& operator<<(ostream &out, const Block &block) {
 
-    out <<"Block name: " << block.Name << "; time: " << block.TimeStamp
-         << "; Data: " << block.Data << "; Nounce: "
-         << block.Nounce << "; Previous Hash: " << block.PrevHash;
+    out << block.Name << " " << block.TimeStamp
+         << " " << block.Data << " "
+         << block.Nounce << " " << block.PrevHash;
 
     return out;
 }
 Block::~Block()=default;
+
+istream& operator>>(istream &in, Block &block){
+    in >> block.Name >>block.TimeStamp >> block.Data >> block.Nounce >> block.PrevHash;
+    return in;
+};
