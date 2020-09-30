@@ -7,12 +7,14 @@
 #include <string>
 #include <ctime>
 
+#include <boost/date_time/posix_time/posix_time.hpp>
+
 class Block
 {
 public:
     uint64_t nounce; // параметр proof-of-work
-    time_t timestamp; // время создания блока
-    uint64_t hash; // хэш предыдущего блока, либо 0 для первого блока
+    boost::posix_time::ptime timestamp; // время создания блока
+    std::string hash; // хэш предыдущего блока, либо 0 для первого блока
     std::string message; // данные, хранящиеся в блоке
 
     /// @brief конструктор по умолчанию
@@ -22,14 +24,15 @@ public:
     /// @param nounce параметр proof-of-work
     /// @param hash хэш предыдущего блока, либо 0 для первого блока
     /// @param message данные, хранящиеся в блоке
-    Block( const uint64_t nounce, const uint64_t hash, const std::string message );
+    Block( const uint64_t nounce, const std::string hash, const std::string message );
 
     /// @brief констурктор с параметрами, устанавливающий параметр времени создания timestamp
     /// @param nounce параметр proof-of-work
     /// @param timestamp время создания блока
     /// @param hash хэш предыдущего блока, либо 0 для первого блока
     /// @param message данные, хранящиеся в блоке
-    Block( const uint64_t nounce, const time_t timestamp, const uint64_t hash, const std::string message );
+    Block( const uint64_t nounce, const boost::posix_time::ptime timestamp,
+           const std::string hash, const std::string message );
 
     /// @brief конструктор копирования
     /// @param ссылка на копируемый блок
@@ -40,7 +43,7 @@ public:
 
     /// @brief функция получения хэша текущего блока
     /// @return хэш SHA 256 текущего блока
-    uint64_t getHash();
+    std::string getHash();
 };
 
 #endif //MATHCYB2020_BLOCK_H

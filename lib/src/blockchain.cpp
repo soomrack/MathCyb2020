@@ -44,7 +44,7 @@ int Blockchain::saveToFile( std::string file_name )
         for ( const Block &block : chain )
         {
             out << block.nounce << std::endl;
-            out << block.timestamp << std::endl;
+            out << boost::posix_time::to_iso_string( block.timestamp ) << std::endl;
             out << block.hash << std::endl;
             out << block.message << std::endl;
         }
@@ -62,25 +62,36 @@ int Blockchain::loadFromFile( std::string file_name )
 {
     chain.clear();
     std::ifstream in( file_name );
+
+    std::string nounce_string;
+    uint64_t nounce;
+    std::string timestamp_string;
+    boost::posix_time::ptime timestamp;
+    std::string hash;
+    std::string message;
+
     if ( in.is_open() )
     {
         while ( !in.eof() )
         {
-            std::string nounce;
-            getline( in, nounce );
+            try
+            {
+                getline( in, nounce_string );
+                nounce = std::stoi ( nounce_string );
 
-            std::string timestamp;
-            getline( in, timestamp );
+                getline( in, timestamp_string );
+                timestamp = boost::posix_time::from_iso_string( timestamp_string );
 
-            std::string hash;
-            getline( in, hash );
+                getline( in, hash );
+                getline( in, message );
 
-            std::string message;
-            getline( in, message );
-
-            //TODO Сергей сделать преобразование считанных строк в нужные форматы данных
-            auto *block = new Block( 0, std::time(0), 0, message );
-            push( *block );
+                auto *block = new Block( nounce, timestamp, hash, message );
+                push( *block );
+            }
+            catch ( std::exception &exception )
+            {
+                return 1;
+            }
         }
     }
     else

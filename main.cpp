@@ -9,25 +9,25 @@ int main()
 {
     auto *block_chain = new Blockchain();
 
-    auto *first = new Block( 0, 0, std::string( "This is first block" ));
+    auto *first = new Block( 0, "", "This is first block");
     block_chain->push( *first );
 
-    auto *second = new Block( 0, first->getHash(), std::string( "This is second block" ));
+    auto *second = new Block( 0, first->getHash(), "This is second block");
     block_chain->push( *second );
 
-    auto *third = new Block( 0, second->getHash(), std::string( "This is third block" ));
+    auto *third = new Block( 0, second->getHash(), "This is third block");
     block_chain->push( *third );
 
-    auto *fourth = new Block( 0, third->getHash(), std::string( "This is fourth block" ));
+    auto *fourth = new Block( 0, third->getHash(), "This is fourth block");
     block_chain->push( *fourth );
 
-    auto *fifth = new Block( 0, fourth->getHash(), std::string( "This is fifth block" ));
+    auto *fifth = new Block( 0, fourth->getHash(), "This is fifth block");
     block_chain->push( *fifth );
 
     block_chain->saveToFile( "temp.txt" );
-
     block_chain->loadFromFile("temp.txt" );
 
-    block_chain->saveToFile( "temp.txt" );
+    block_chain->printLastMessages(5);
+
     return 0;
 }
