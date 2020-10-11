@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ctime>
 #include <list>
+#include <string.h>
+
 using namespace std;
 
 //cтруктура блока в блокчейне, элементы которого:
@@ -34,28 +36,42 @@ private:
     ~Blockchain();// деструктор
 
 public:
-    int push(const Tranche new_tail){ //добавляет новый блок к концу сhain
-        chain.push_back(new_tail);
-        return 0;
-    };
-
-    Tranche pop(){ // Удаляет хвостовой блок из цепочки и возвращает его
-        _List_iterator<Tranche> i = chain.end();
-        Tranche tail_block(*i); //здесь CLion попросил сделать деструктор Tranche public вместо private
-        chain.pop_back();
-        return tail_block;
-    };
+    int push(const Tranche new_tail); //добавляет новый блок к концу сhain
+    Tranche pop(); // Удаляет хвостовой блок из цепочки и возвращает его
 
 public:
-    int save_to_file(const string filename);
+    int save_to_file(const string filename); //сохраняет блокчейн в файл
 
-    int load_from_file(const string filename);
+    int load_from_file(const string filename); // загружает блокчейн из файла
 
 public:
     int print_last_message(const int n); // Выводит на консоль сообщения из крайних n блоков
-    // и количество выведенных сообщений
+                                         // и количество выведенных сообщений
 };
 
+int Blockchain::push(const Tranche new_tail) {
+    chain.push_back(new_tail);
+    return 0;
+}
+
+Tranche Blockchain::pop() {
+    _List_iterator<Tranche> index = chain.end();
+    Tranche tail_block(*index); //здесь CLion попросил сделать деструктор Tranche public вместо private
+    chain.pop_back();
+    return tail_block;
+}
+
+int Blockchain::save_to_file(const string filename) {
+
+}
+
+int Blockchain::load_from_file(const string filename) {
+
+}
+
+int Blockchain::print_last_message(const int n) {
+
+}
 
 //хэш-функция(не дописанная): записывает в строку данные блока.
 string myhash(Tranche &block){
