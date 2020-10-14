@@ -97,6 +97,11 @@ public:
 public:
     int print_last_message(const int n); // Выводит на консоль сообщения из крайних n блоков
                                          // и количество выведенных сообщений
+public:
+    int get_length(const Tranche chain); // выводит длину цепочки блокчейна chain
+
+public:
+    Tranche get_last(); // Возвращает последний блок цепочки блокчейна
 };
 
 int Blockchain::push(const Tranche new_tail) {
@@ -142,6 +147,15 @@ string myhash(Tranche &block){
     str = to_string(block.get_timestamp())+block.get_transactions() + to_string(block.get_nounce());
     return str;
 };
+
+//интерфейс синхронизации (протокола консенсуса)
+int send_data(string address, Blockchain my_blockchain); // Отправляет имеющийся блокчейн получателю на address, который состоит из IP и port
+int load_data(string address, Blockchain loaded_blockchain); // Загружает блокчейн отправителя (его IP и port в address)
+int send_length(string address, int length); // Отправляет длину блокчейна (length) получателю (его IP и port в address)
+int send_block(string address, Tranche block, int block_number); // Отправляет block и порядковый номер блока в цепочке
+                                                                 // (block_number) на address
+int send_success(string address); // Отправляет сообщение о получении блока на address
+
 
 int main() {
     time_t current1;
