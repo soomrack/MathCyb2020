@@ -26,7 +26,7 @@ public:
     ~Tranche();// деструктор
 
 public:
-    time_t get_timestamp();
+    string get_timestamp();
     string get_transactions();
     uint64_t get_nounce();
     uint64_t get_hashValue();
@@ -55,8 +55,8 @@ Tranche::Tranche(const Tranche &tranche) {
     hashValue = tranche.hashValue;
 }
 
-time_t Tranche::get_timestamp() {
-    return timestamp;
+string Tranche::get_timestamp() {
+    return ctime(&timestamp);
 }
 
 string Tranche::get_transactions() {
@@ -82,8 +82,8 @@ private:
 public:
     Blockchain();
 
-private:
-    ~Blockchain();// деструктор
+    ~Blockchain();
+    // деструктор
 
 public:
     int push(const Tranche new_tail); //добавляет новый блок к концу сhain
@@ -118,33 +118,43 @@ Tranche Blockchain::pop() {
 
 int Blockchain::save_to_file(const string filename) {
     ofstream outFile;
-    outFile.open(filename);
-
-    // здесь надо как-то записать блокчейн в файл
-    for (auto element : chain) outFile << element << endl; // не работает так! надо разобраться
+    // Opening file in append mode
+    outFile.open(filename, ios::app);
+    for (auto element : chain) outFile.write((char*)&element, sizeof(element));
     outFile.close();
     return 0;
 };
 
-int Blockchain::load_from_file(const string filename) {
+int Blockchain::load_from_file(const string filename) { //НЕ РАБОТАЕТ! программа вылетает
     ifstream inFile;
-    inFile.open(filename);
-
-    // тут надо как-то загрузить блокчейн
-
+    // Opening file in input mode
+    inFile.open(filename, ios::in);
+    Tranche element;
+    while (!inFile.eof()) {
+        inFile.read((char*)&element, sizeof(element));
+        chain.push_back(element);
+    }
     inFile.close();
     return 0;
 };
 
 int Blockchain::print_last_message(const int n) {
     return 0;
+}
+
+Blockchain::Blockchain() {
+
+}
+
+Blockchain::~Blockchain() {
+
 };
 
 //хэш-функция(не дописанная): записывает в строку данные блока.
 string myhash(Tranche &block){
     string str;
     //time(&timestamp);
-    str = to_string(block.get_timestamp())+block.get_transactions() + to_string(block.get_nounce());
+    str = block.get_timestamp()+block.get_transactions() + to_string(block.get_nounce());
     return str;
 };
 
@@ -161,6 +171,13 @@ int main() {
     time_t current1;
     //cout<<hash1(current1, "X gave Y", nounce1)<<endl;
     Tranche zero(time(&current1),"X gave $100 to Y", 6, 0);
-    //cout<< myhash(zero)<<endl;
+    Blockchain test_chain;
+    Blockchain loaded_chain;
+    test_chain.push(zero);
+    test_chain.save_to_file("test_chain.txt");
+    loaded_chain.load_from_file("test_chain.txt");
+    //Tranche one;
+    //one = loaded_chain.pop();
+    //cout<< myhash(one)<<endl;
     return 0;
 }
