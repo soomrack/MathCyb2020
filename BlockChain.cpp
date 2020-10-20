@@ -20,7 +20,7 @@ Block BlockChain::GetLastBlock() const{
 }
 
 int BlockChain::get_length() {
-		return Chain.size();
+    return Chain.size();
 }
 
 int send_length(string address, int length);
