@@ -20,6 +20,7 @@ private:
 public:
     BlockChain();
     void AddBlock(Block B_New);
+	int get_length();
 
 };
 

@@ -18,3 +18,13 @@ void BlockChain::AddBlock(Block B_New) {
 Block BlockChain::GetLastBlock() const{
     return Chain.push_back();
 }
+
+int BlockChain::get_length() {
+		return Chain.size();
+}
+
+int send_length(string address, int length);
+ 
+int send_block(string address, Block block, int block_number);
+
+int send_success(string address);
