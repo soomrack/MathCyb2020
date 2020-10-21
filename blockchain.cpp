@@ -95,7 +95,7 @@ ostream& operator<<(ostream &out, const BlockChain& chain){ // Вывод все
     }
     return out;
 }
-Block BlockChain::operator[](int index){  //Доступ по индексу в цепи
+Block& BlockChain::operator[](int index){  //Доступ по индексу в цепи
     auto iterator = this->block_chain.begin();
     if(index <= this->block_chain.size()) {
         cout <<"\n"<< index << "->\n";
@@ -108,3 +108,40 @@ Block BlockChain::operator[](int index){  //Доступ по индексу в 
     }
     return *iterator;
 }
+
+
+BlockChain &BlockChain::sendData(int index) {
+    auto *newBlockChain = new BlockChain;
+    for (size_t step = index; step != block_chain.size(); step++) {
+        
+    }
+    return *newBlockChain;
+}
+
+void BlockChain::loadData(BlockChain &block, int index){
+    
+}
+bool BlockChain::is_block_in_chain(Block &block) {
+  for(auto &i : BlockChain::block_chain){
+      if(i.get_hash() == block.get_hash())
+          return true;
+  }
+    return false;
+}
+
+
+Block* get_block_by_id(BlockChain &chain, int index){
+    return &chain[index];
+}
+
+BlockChain& sync(BlockChain &chain1, BlockChain &chain2) {
+if(chain1.get_chain_length() >= chain2.get_chain_length()){
+
+}
+
+
+
+    return chain1;
+}
+
+

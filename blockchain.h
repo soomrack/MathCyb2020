@@ -34,8 +34,19 @@ public:
     /*
      * Операторы
      */
-
-    Block operator[](int index);  //Доступ по индексу в цепи
+    Block& operator[](int index);  //Доступ по индексу в цепи
     friend ostream& operator<<(ostream &out, const BlockChain &chain);  // Вывод всей цепи
+
+    /*
+     * Синхронизация блоков
+     */
+    BlockChain &sendData(int index);
+
+    void loadData(BlockChain &block, int index);
+
+    bool is_block_in_chain(Block &block);
+
 };
+Block *get_block_by_id(BlockChain &chain, int index);
+BlockChain &sync(BlockChain &chain1, BlockChain &chain2); // Синхронизация двух цепей с учетом правильности
 #endif //MATHCYB2020_BLOCKCHAIN_H

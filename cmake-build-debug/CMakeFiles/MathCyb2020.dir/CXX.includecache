@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../hash/sha256.cpp
-sha256.h
-../hash/sha256.h
-endian.h
--
-
 ../hash/sha256.h
 string
 -
@@ -29,6 +23,12 @@ ctime
 -
 cstdint
 -
+hash/sha256.h
+-
+
+C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.cpp
+blockchain.h
+C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.h
 
 C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.h
 block.h
@@ -45,8 +45,4 @@ block.h
 C:/Users/moroz/Documents/GitHub/MathCyb2020/block.h
 blockchain.h
 C:/Users/moroz/Documents/GitHub/MathCyb2020/blockchain.h
-hash/sha256.cpp
--
-ctime
--
 

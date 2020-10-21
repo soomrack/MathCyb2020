@@ -1,2 +1,4 @@
-Блокчейн.
-Практические занятия.
+BlockChain
+
+Satanovskiy A.D
+Spb
