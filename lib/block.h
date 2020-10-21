@@ -12,19 +12,24 @@
 class Block
 {
 public:
+    std::size_t index; // индекс блока в цепи
     uint64_t nounce; // параметр proof-of-work
     boost::posix_time::ptime timestamp; // время создания блока
-    std::string hash; // хэш предыдущего блока, либо 0 для первого блока
+    std::size_t hash; // хэш предыдущего блока, либо 0 для первого блока
     std::string message; // данные, хранящиеся в блоке
 
     /// @brief конструктор по умолчанию
     Block();
 
+    /// @brief конструктор с параметром message
+    /// @param message данные, хранящиеся в блоке
+    Block( const std::string message );
+
     /// @brief констурктор с параметрами, устанавливающий параметр времени создания timestamp
     /// @param nounce параметр proof-of-work
     /// @param hash хэш предыдущего блока, либо 0 для первого блока
     /// @param message данные, хранящиеся в блоке
-    Block( const uint64_t nounce, const std::string hash, const std::string message );
+    Block( const uint64_t nounce, const std::size_t hash, const std::string message );
 
     /// @brief констурктор с параметрами, устанавливающий параметр времени создания timestamp
     /// @param nounce параметр proof-of-work
@@ -32,7 +37,7 @@ public:
     /// @param hash хэш предыдущего блока, либо 0 для первого блока
     /// @param message данные, хранящиеся в блоке
     Block( const uint64_t nounce, const boost::posix_time::ptime timestamp,
-           const std::string hash, const std::string message );
+           const std::size_t hash, const std::string message );
 
     /// @brief конструктор копирования
     /// @param ссылка на копируемый блок
@@ -40,10 +45,16 @@ public:
 
     /// @brief деструктор
     ~Block();
-
-    /// @brief функция получения хэша текущего блока
-    /// @return хэш SHA 256 текущего блока
-    std::string getHash();
 };
+
+/// @brief функция вычисления хэша от блока
+/// @param block блок, от которого нужно вычислить хэш
+/// @return хэш
+std::size_t getHash( Block &block );
+
+/// @brief функция получения индекса блока
+/// @param block блок, индекс которого нужно получить
+/// @return индекс
+std::size_t getIndex( Block &block );
 
 #endif //MATHCYB2020_BLOCK_H
