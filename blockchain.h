@@ -17,13 +17,13 @@ public:
     */
     BlockChain() = default;
     ~BlockChain() = default;
-    explicit BlockChain(const Block& block);
+    explicit BlockChain(Block& block);
     /*
      * Интерфейс
     */
-    list<Block> push(const Block& newTail); //Добавление блока в конец "этой" цепи
-    list<Block> push_list_of_blocks(const list<Block>& new_chain);
-    Block pop(); //Удаление последнего блока из "этой" цепи, возвращает остаток цепочки
+    list<Block> push(Block& newTail); //Добавление блока в конец "этой" цепи
+    Block& get_block(int index); // Получение блока по индексу
+    Block& pop(); //Удаление последнего блока из "этой" цепи, возвращает остаток цепочки
     unsigned int print_last_messages(int n); //Печать последних n сообщений "этой" цепи
     int get_chain_length(); // Длина "этой" цепи
     /*
@@ -40,13 +40,13 @@ public:
     /*
      * Синхронизация блоков
      */
-    BlockChain &sendData(int index);
+    BlockChain sendData(int index);
 
-    void loadData(BlockChain &block, int index);
+    void loadData(BlockChain chain, int index);
 
-    bool is_block_in_chain(Block &block);
+    int is_block_in_chain(Block &block);
 
 };
-Block *get_block_by_id(BlockChain &chain, int index);
-BlockChain &sync(BlockChain &chain1, BlockChain &chain2); // Синхронизация двух цепей с учетом правильности
+
+bool  sync(BlockChain &chain1, BlockChain &chain2); // Синхронизация двух цепей с учетом правильности
 #endif //MATHCYB2020_BLOCKCHAIN_H

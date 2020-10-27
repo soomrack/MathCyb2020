@@ -25,10 +25,16 @@ int main() {
     chain2.push(block5);
     chain2.push(block6);
 
-    cout << sync(chain1,chain2);
+    if(sync(chain1,chain2))
+        cout << "Succeed! " << endl;
+    else {
+        cout << "Error! " << endl;
+        return EXIT_FAILURE;
+    }
+    cout << chain1 << endl;
+    cout << chain2 << endl;
 
 
-
-    return 0;
+    return EXIT_SUCCESS;
 }
 

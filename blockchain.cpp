@@ -1,31 +1,26 @@
 #include "blockchain.h"
 
-BlockChain::BlockChain(const Block & block) { this->block_chain.push_back(block); }
+BlockChain::BlockChain(Block & block) {
+    this->block_chain.push_back(block);
+}
 
 
 int BlockChain::get_chain_length() {  //Длина цепи
     return this->block_chain.size();
 }
 
-list<Block> BlockChain::push(const Block & newTail) {  //Добавить блок в конец цепи
+list<Block> BlockChain::push(Block & newTail) {  //Добавить блок в конец цепи
     this->block_chain.push_back(newTail);
     return this->block_chain;
 }
 
-Block BlockChain::pop() {  //Удалить блок из конца цепи и вернуть этот же блок
-    Block lastBlock = this->block_chain.back();
+Block& BlockChain::pop() {  //Удалить блок из конца цепи и вернуть этот же блок
+    Block& lastBlock = this->block_chain.back();
     this->block_chain.pop_back();
     return lastBlock;
 }
 
-list<Block> BlockChain::push_list_of_blocks(const list<Block> & new_chain) {  //Добавить list<Block> блоков в конец цепи
-    auto index = new_chain.begin();
-    while(index != new_chain.end()){
-        this->block_chain.push_back(*index);
-        index++;
-    }
-    return this->block_chain;
-}
+
 unsigned int BlockChain::print_last_messages(int n) {  //Печать последних n сообщений
     auto index = this->block_chain.begin();
     if(get_chain_length() >= n)
@@ -109,39 +104,63 @@ Block& BlockChain::operator[](int index){  //Доступ по индексу в
     return *iterator;
 }
 
+int BlockChain::is_block_in_chain(Block &block) {
+    int counter = 0;
+    for(auto &i : BlockChain::block_chain){
 
-BlockChain &BlockChain::sendData(int index) {
-    auto *newBlockChain = new BlockChain;
-    for (size_t step = index; step != block_chain.size(); step++) {
-        
+        if(i.get_hash() == block.get_hash())
+            return counter;
+        counter++;
     }
+    return -1;
+}
+
+BlockChain BlockChain::sendData(int index) {
+    auto *newBlockChain = new BlockChain;
+    index++;
+    for (size_t step = index; step < block_chain.size(); step++)
+        newBlockChain->push(get_block(step));
     return *newBlockChain;
 }
 
-void BlockChain::loadData(BlockChain &block, int index){
-    
+void BlockChain::loadData(BlockChain chain, int index){
+    index++;
+    for(unsigned int step = index; step < block_chain.size(); step++)
+        block_chain.pop_back();
+    for (int step = 0; step < chain.get_chain_length() ; step++)
+        block_chain.push_back(chain.get_block(step));
 }
-bool BlockChain::is_block_in_chain(Block &block) {
-  for(auto &i : BlockChain::block_chain){
-      if(i.get_hash() == block.get_hash())
-          return true;
-  }
+
+
+Block &BlockChain::get_block(int index) {
+    auto iterator = block_chain.begin();
+    if(index < block_chain.size())
+    advance(iterator, index);
+    else iterator = block_chain.end();
+    return  *iterator;
+}
+
+
+bool sync(BlockChain &chain1, BlockChain &chain2) {
+
+
+    int step = chain1.get_chain_length();
+if(chain1.get_chain_length() < chain2.get_chain_length()) {
+    step = chain2.get_chain_length();
+    swap(chain1, chain2);
+}
+
+  step--;
+  for (; step != -1; step--) {
+       Block & cur = chain1.get_block(step);
+       int pos = chain2.is_block_in_chain(cur);
+           if (pos != -1){
+                   chain2.loadData(chain1.sendData(step), pos);
+                   return true;
+           }
+    }
+
     return false;
-}
-
-
-Block* get_block_by_id(BlockChain &chain, int index){
-    return &chain[index];
-}
-
-BlockChain& sync(BlockChain &chain1, BlockChain &chain2) {
-if(chain1.get_chain_length() >= chain2.get_chain_length()){
-
-}
-
-
-
-    return chain1;
 }
 
 

@@ -32,6 +32,7 @@ public:
     uint64_t get_nonce();
     uint64_t get_hash();
     time_t get_time_stamp();
+
     void insert_hash(int block_hash);
     //Вернуть всю информацию этого блока
     tuple<string,string,uint64_t,uint64_t,time_t> get_all(){return make_tuple(message,name,nonce,hash,time_stamp);}
