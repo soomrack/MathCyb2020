@@ -24,7 +24,9 @@ int BlockChain::get_length() {
 }
 
 // Synchronization
-
+int Synchron(BlockChain one, BlockChain two){
+    // сравниваем длины блоков тут еще else if 
+}
 int send_length(string address, int length);
  
 int send_block(string address, Block block, int block_number);
