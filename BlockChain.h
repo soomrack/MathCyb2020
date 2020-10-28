@@ -21,6 +21,7 @@ public:
     BlockChain();
     void AddBlock(Block B_New);
     int get_length();
+	Block GetBlock(int index);
 
 };
 
