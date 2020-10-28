@@ -15,7 +15,7 @@ class BlockChain {
 private:
     list<Block> Chain;
     Block GetLastBlock() const;
-//    uint32_t Difficulty; // Difficulty Target for mining
+    uint32_t Difficulty; // Difficulty Target for mining
 
 public:
     BlockChain();
