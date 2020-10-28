@@ -31,15 +31,8 @@ public:
 
     // синхронизация
     vector<Block> temp_chain;
-    int n_same = len();     // номер крайнего совпадающего блока
-    int send_length(string address);
-    bool check_length(string address);
-    bool check_same(Block block);       // проверка совпадения последних блоков
-    int send_block(string address, int i);
-    int send_success(string address);
-    int sync(string alice_len_address, string my_len_address,
-            string alice_block_address, string my_block_address,
-             string alice_success_address, string my_success_address);
+    int n_same = len();     // номер крайнего совпадающего блок
+    int sync(Blockchain &other);
 
 
 };
