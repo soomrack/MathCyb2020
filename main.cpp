@@ -3,6 +3,8 @@
 #include <list>
 #include <string.h>
 #include <fstream>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -12,16 +14,16 @@ using namespace std;
 //nounce -- некоторе целое число
 //hashValue -- значение хэш-функии от предыдущего блока
 class Tranche{
-    time_t timestamp;
-    string transactions;
-    uint64_t nounce;
-    uint64_t hashValue;
 
 public:
     Tranche();
     Tranche(const time_t timestamp, const string transactions, const uint64_t nounce, const uint64_t hashValue);
     Tranche(const Tranche &tranche);
 
+    uint64_t hashValue;
+    time_t timestamp;
+    string transactions;
+    uint64_t nounce;
 public:
     ~Tranche();// деструктор
 
@@ -54,6 +56,18 @@ Tranche::Tranche(const Tranche &tranche) {
     nounce = tranche.nounce;
     hashValue = tranche.hashValue;
 }
+
+ostream& operator<<(ostream &out, const Tranche &block) {
+    out << block.timestamp << " " << block.transactions
+        << " " << block.nounce << " "
+        << block.hashValue;
+    return out;
+}
+
+istream& operator>>(istream &in, Tranche &block){
+    in >> block.transactions >>block.timestamp >> block.nounce >> block.hashValue;
+    return in;
+};
 
 string Tranche::get_timestamp() {
     return ctime(&timestamp);
@@ -102,6 +116,13 @@ public:
 
 public:
     Tranche get_last(); // Возвращает последний блок цепочки блокчейна
+
+    friend ostream& operator<< (ostream &out, const Blockchain &chain); //для перегрузки оператора <<
+};
+
+Blockchain::Blockchain(){
+    std::list<Tranche> new_chain;
+    chain = new_chain;
 };
 
 int Blockchain::push(const Tranche new_tail) {
@@ -116,34 +137,36 @@ Tranche Blockchain::pop() {
     return tail_block;
 };
 
+ostream& operator<<(ostream &out, const Blockchain &this_chain){
+    out<< "chain length = "<< this_chain.chain.size()<<'\n'<<"blocks: "<<endl;
+    for(auto index = this_chain.chain.begin(); index != this_chain.chain.end(); ++index){
+        out << *index << endl;
+    }
+    return out;
+}
+
+
 int Blockchain::save_to_file(const string filename) {
     ofstream outFile;
-    // Opening file in append mode
-    outFile.open(filename, ios::app);
-    for (auto element : chain) outFile.write((char*)&element, sizeof(element));
+    outFile.open(filename, ios_base::trunc);
+    if(outFile.fail())
+        std::cout<<"unable to open the file"<<endl;
+    for (const auto &element : chain) outFile << element << endl;
     outFile.close();
     return 0;
 };
 
-int Blockchain::load_from_file(const string filename) { //НЕ РАБОТАЕТ! программа вылетает
-    ifstream inFile;
-    // Opening file in input mode
-    inFile.open(filename, ios::in);
-    Tranche element;
-    while (!inFile.eof()) {
-        inFile.read((char*)&element, sizeof(element));
-        chain.push_back(element);
-    }
+int Blockchain::load_from_file(string filename) {
+    ifstream inFile(filename);
+    istream_iterator<Tranche> begin(inFile), end;
+    list<Tranche> chain_(begin, end);
+    chain = chain_;
     inFile.close();
-    return 0;
-};
-
-int Blockchain::print_last_message(const int n) {
     return 0;
 }
 
-Blockchain::Blockchain() {
-
+int Blockchain::print_last_message(const int n) {
+    return 0;
 }
 
 Blockchain::~Blockchain() {
@@ -176,8 +199,8 @@ int main() {
     test_chain.push(zero);
     test_chain.save_to_file("test_chain.txt");
     loaded_chain.load_from_file("test_chain.txt");
-    //Tranche one;
-    //one = loaded_chain.pop();
-    //cout<< myhash(one)<<endl;
+    Tranche one;
+    one = loaded_chain.pop();
+    cout<< one <<endl;
     return 0;
 }
