@@ -3,6 +3,11 @@
 //
 
 #include "BlockChain.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 BlockChain::BlockChain() {
     Chain.emplace_back(Block(0, "Genesis Block"));
@@ -35,6 +40,35 @@ Block BlockChain::GetBlock(int index)
 	}
 }
 
+
+int Blockchain::load_data(string File){
+    string line;
+    ifstream in(File); 
+    if (in.is_open())
+    {
+        while (getline(in, line))
+        {
+            cout << line << endl;
+        }
+    }
+    in.close();  	
+
+    return 0;
+}; 
+
+
+
+int Blockchain::save_data(string File, string Text){
+    ofstream out("File", ios::app);
+    if (out.is_open())
+         out << Text << endl;
+    out.close(); 
+	
+    return 0;
+};
+
+
+
 // Synchronization
 
 void sync(string address_1, string address_2)
@@ -65,5 +99,3 @@ int send_success(string address);
 
 BlockChain load_data(string address);
 
-// Нужна функция для вывода последнего совпадающего блока в двух блокчейнах. 
-// Для этого нужно получить эти два блокчейна. Также нужна проверять хэш или 
