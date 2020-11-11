@@ -19,9 +19,14 @@ private:
 
 public:
     BlockChain();
+    ~Blockchain();
     void AddBlock(Block B_New);
     int get_length();
     Block GetBlock(int index);
+    int print_messages(int n);
+    int load_data(string File); // loading data from a file named File
+    int save_data(string File); // sending data to a file named File
+    
 
 };
 
