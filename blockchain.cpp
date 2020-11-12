@@ -70,10 +70,10 @@ unsigned int BlockChain::load_from_file(const string &file_name) {  //Загру
             string name;
             uint64_t nonce{};
             uint64_t hash{};
-            time_t time_stamp{};
+            boost::posix_time::ptime time_stamp{};
 
-            file >> name >> message >> nonce >> hash >> time_stamp;
-            Block newB(name, message, hash, nonce, time_stamp);
+            file >> name >> message >> nonce >> hash;
+            Block newB(name, message, hash, nonce);
             this->block_chain.push_back(newB);
         }
     }

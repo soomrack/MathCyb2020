@@ -1,30 +1,38 @@
 #include "block.h"
+#include <boost/functional/hash.hpp>
+
+
 
 string   Block::get_message(){return message;}
 string   Block::get_name(){ return name;}
 uint64_t Block::get_nonce(){ return nonce;}
 uint64_t Block::get_hash(){return hash ? hash : 0;}
-time_t   Block::get_time_stamp(){ return time_stamp;}
+boost::posix_time::ptime Block::get_time_stamp(){ return time_stamp;}
 
 void Block::insert_hash(int block_hash) { this->hash = block_hash;}
 
-Block::Block() {this->name = "None"; this->message = "None"; this->hash = 0; this->nonce = 0; this->time_stamp = NULL;}
+Block::Block() {
+    this->name = "None";
+    this->message = "None";
+    this->hash = 0; this->nonce = 0;
+    this->time_stamp = boost::posix_time::second_clock::universal_time();
+}
 
-Block::Block(const string & name, const string & message, uint64_t hash, uint64_t nonce, time_t time_stamp) {
+Block::Block(const string & name, const string & message, uint64_t hash, uint64_t nonce) {
 
     this->name = name;
     this->message = message;
     this->hash = hash;
     this->nonce = nonce;
-    this->time_stamp = time(nullptr);
+    this->time_stamp = boost::posix_time::second_clock::universal_time();
 }
 
-Block::Block(const string &name, const string &message, uint64_t nonce, time_t time_stamp) {
+Block::Block(const string &name, const string &message, uint64_t nonce, time time_stamp) {
 
     this->name = name;
     this->message = message;
     this->nonce = nonce;
-    this->time_stamp = time(nullptr);
+    this->time_stamp = boost::posix_time::second_clock::universal_time();
 }
 
 ostream& operator<<(ostream &out, const Block &block) {
@@ -37,19 +45,15 @@ ostream& operator<<(ostream &out, const Block &block) {
     return out;
 }
 
-/*
 size_t getHash( Block  &block )
 {
-    SHA256 sha256;
-    string str = sha256(to_string(block.get_nonce()) + block.get_message() + to_string(block.get_time_stamp()));
-    char* string1 = new char[str.length() + 1];
-    strcpy(string1, str.c_str());
-    uint64_t val = strtoll(string1, nullptr, 16);
-    delete [] string1;
+    string input = to_string(block.get_nonce() ) +
+                        boost::posix_time::to_iso_string( block.get_time_stamp() ) +
+                        to_string(block.get_hash() ) +
+                        block.get_message();
 
-    return val;
+    return boost::hash_value( input );
 }
-*/
 
 
 

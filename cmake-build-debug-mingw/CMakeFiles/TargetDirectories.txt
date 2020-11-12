@@ -1,0 +1,3 @@
+C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug-mingw/CMakeFiles/MathCyb2020.dir
+C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+C:/Users/moroz/Documents/GitHub/MathCyb2020/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir

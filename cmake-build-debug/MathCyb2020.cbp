@@ -24,6 +24,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add directory="C:/boost/include/boost-1_74"/>
 					<Add directory="C:/Users/moroz/Documents/GitHub/MathCyb2020/."/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include"/>
@@ -47,6 +48,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add directory="C:/boost/include/boost-1_74"/>
 					<Add directory="C:/Users/moroz/Documents/GitHub/MathCyb2020/."/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include"/>
@@ -115,9 +117,6 @@
 			<Option target="MathCyb2020"/>
 		</Unit>
 		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/main.cpp">
-			<Option target="MathCyb2020"/>
-		</Unit>
-		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/readme.txt">
 			<Option target="MathCyb2020"/>
 		</Unit>
 		<Unit filename="C:/Users/moroz/Documents/GitHub/MathCyb2020/CMakeLists.txt">

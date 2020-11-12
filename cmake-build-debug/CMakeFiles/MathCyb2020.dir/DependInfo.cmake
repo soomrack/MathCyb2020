@@ -12,6 +12,7 @@ set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "C:/boost/include/boost-1_74"
   "../."
   )
 
