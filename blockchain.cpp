@@ -1,57 +1,158 @@
-#include <stdio.h>
+#include "blockchain.h"
 
-#include <cstdint>
-#include <ctime>
+Blockchain::Blockchain(Block &block) {
+  this->blockchain.push_back(block);
+}
 
-#include <list>
-#include <string>
+size_t Blockchain::size() {
+  return this->blockchain.size();
+}
 
-class Block {
-private:
-  uint64_t nounce;     // Parameter for proof-of-work
-  uint64_t hash;       // Hash of previouse block, 0 for the first block
-  time_t timestamp;    // Timestamp when block was created
-  std::string message; // Data stored in one block of blockchain
+void Blockchain::push(const Block &block) {
+  this->blockchain.push_back(block);
+}
 
-public:
-  Block();
-  Block(const std::string message, const uint64_t nounce, const uint64_t hash);
-  Block(const Block &block);
+void Blockchain::pop() {
+  this->blockchain.pop_back();
+}
 
-private:
-  ~Block();
-};
+Block& Blockchain::back() {
+  return this->blockchain.back();
+}
 
-class BlockChain {
-private:
-  std::list<Block> chain;
+unsigned int Blockchain::print_last_messages(int n) {
+  auto index = this->blockchain.begin();
+  if(size() >= n)
+    advance(index, size() - n);
+  else
+    cout << "chain_length() < n, output = all" << endl;
 
-public:
-  BlockChain();
+  for (; index != blockchain.end() ; index++) {
+    cout << index->get_message() << endl;
+  }
+  return 0;
+}
 
-private:
-  ~BlockChain();
+unsigned int Blockchain::save_to_file(const string &file_name) {
+  string new_file_name;
+  if (file_name.empty()) {
+    cout << "Invalid name, saving -> Blockchain_saver.txt" << endl;
+    new_file_name = "Blockchain_saver.txt";
+  }
+  else {
+    new_file_name = file_name;
+  }
+  ofstream output(new_file_name);
+  for (auto & i : this->blockchain) {
+    output << i.get_name()<< " " << i.get_message()<< " " << i.get_nonce() << " "<< i.get_hash()<< " " << i.get_time_stamp() << endl;
+  }
+  output.close();
+  return 0;
+}
 
-public:
-  int push(const Block new_tail); // Add new block to tail of chain
-  Block pop();                    // Delete tail block from chain and return it
+unsigned int Blockchain::load_from_file(const string &file_name) {
+  if (file_name.empty()) {
+    cerr << "There is no file!";
+    return 1;
+  }
+  else
+    {
+      ifstream file(file_name);
+      while(!file.eof()){
 
-public:
-  int save_to_file(const std::string filename);
-  int load_from_file(const std::string filename);
+	string message;
+	string name;
+	uint64_t nonce{};
+	uint64_t hash{};
+	time_t time_stamp{};
 
-public:
-  int print_last_messages(
-      const int n); // Print to console messages from n tail blocks
-                    // return number of printed messages
-};
+	file >> name >> message >> nonce >> hash >> time_stamp;
+	Block newB(name, message, hash, nonce, time_stamp);
+	this->blockchain.push_back(newB);
+      }
+    }
+  return 0;
+}
+ostream& operator<<(ostream &out, const Blockchain& chain){
+  out << "chain length ->" << chain.blockchain.size() << endl;
+  out << "blocks: " << endl;
 
-int main () {
-  printf("Success!");
+  int j = 0;
+  for (const auto & index : chain.blockchain) {
+    out << j <<"->\n"<< index << endl;
+    j++;
+  }
+  return out;
+}
+Block& Blockchain::operator[](int index){
+  auto iterator = this->blockchain.begin();
+  if(index <= this->blockchain.size()) {
+    cout <<"\n"<< index << "->\n";
+    advance(iterator, index);
+    return *iterator;
+  }
+  else {
+    cout << "\n" << "index > block.chain.size(), index = blockchain.end() " << "->\n";
+    advance(iterator, this->blockchain.size() - 1);
+  }
+  return *iterator;
+}
+
+int Blockchain::has_block(Block &block) {
+  int counter = 0;
+  for(auto &i : Blockchain::blockchain){
+
+    if(i.get_hash() == block.get_hash())
+      return counter;
+    counter++;
+  }
+  return -1;
+}
+
+Blockchain Blockchain::send_data(int index) {
+  auto *newBlockchain = new Blockchain;
+  index++;
+  for (size_t step = index; step < blockchain.size(); step++)
+    newBlockchain->push(get_block(step));
+  return *newBlockchain;
+}
+
+void Blockchain::load_data(Blockchain chain, int index){
+  index++;
+  for(unsigned int step = index; step < blockchain.size(); step++)
+    blockchain.pop_back();
+  for (int step = 0; step < chain.size() ; step++)
+    blockchain.push_back(chain.get_block(step));
 }
 
 
+Block &Blockchain::get_block(int index) {
+  auto iterator = blockchain.begin();
+  if(index < blockchain.size())
+    advance(iterator, index);
+  else iterator = blockchain.end();
+  return  *iterator;
+}
 
 
+bool sync(Blockchain &chain1, Blockchain &chain2) {
 
 
+  int step = chain1.size();
+  if(chain1.size() < chain2.size()) {
+    step = chain2.size();
+    swap(chain1, chain2);
+  }
+
+  step--;
+  for (; step != -1; step--) {
+    Block & cur = chain1.get_block(step);
+    int pos = chain2.has_block(cur);
+    if (pos != -1){
+      chain2.load_data(chain1.send_data(step), pos);
+      return true;
+    }
+  }
+
+  return false;
+}
