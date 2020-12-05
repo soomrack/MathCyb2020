@@ -44,7 +44,7 @@ unsigned int Blockchain::save_to_file(const string &file_name) {
   }
   ofstream output(new_file_name);
   for (auto & i : this->blockchain) {
-    output << i.get_name()<< " " << i.get_message()<< " " << i.get_nonce() << " "<< i.get_hash()<< " " << i.get_time_stamp() << endl;
+    output << i.get_name()<< " " << i.get_message()<< " " << i.get_nonce() << " "<< i.get_hash()<< " " << chrono::system_clock::to_time_t(i.get_time_stamp()) << endl;
   }
   output.close();
   return 0;
@@ -62,12 +62,12 @@ unsigned int Blockchain::load_from_file(const string &file_name) {
 
 	string message;
 	string name;
-	uint64_t nonce{};
-	uint64_t hash{};
-	time_t time_stamp{};
+	string nonce;
+	string hash;
+	time_t time_stamp;
 
 	file >> name >> message >> nonce >> hash >> time_stamp;
-	Block newB(name, message, hash, nonce, time_stamp);
+	Block newB(name, message, hash, nonce, chrono::system_clock::from_time_t(time_stamp));
 	this->blockchain.push_back(newB);
       }
     }
