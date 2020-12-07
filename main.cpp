@@ -11,6 +11,7 @@
 using namespace std;
 
 //cтруктура блока в блокчейне, элементы которого:
+//index -- индекс блока в цепи
 //timestamp -- время создания блока
 //transactions -- список транзакций
 //nounce -- некоторе целое число
@@ -22,6 +23,7 @@ public:
     Tranche(const time_t timestamp, const string transactions, const uint64_t nounce, const uint64_t hashValue);
     Tranche(const Tranche &tranche);
 
+    std::size_t index;
     uint64_t hashValue;
     time_t timestamp;
     string transactions;
@@ -94,6 +96,14 @@ Tranche::~Tranche() {
 
 }
 
+//хэш-функция(не дописанная): записывает в строку данные блока.
+string myhash(Tranche &block){
+    string str;
+    //time(&timestamp);
+    str = block.get_timestamp()+block.get_transactions() + to_string(block.get_nounce());
+    return str;
+};
+
 class Blockchain {
 private:
     std::list<Tranche> chain;
@@ -117,7 +127,7 @@ public:
     int print_last_message(const int n); // Выводит на консоль сообщения из крайних n блоков
                                          // и количество выведенных сообщений
 public:
-    int get_length(const Tranche chain); // выводит длину цепочки блокчейна chain
+    int get_length(); // выводит длину цепочки блокчейна chain
 
 public:
     Tranche get_last(); // Возвращает последний блок цепочки блокчейна
@@ -130,7 +140,7 @@ public:
 
     int load_data(Blockchain data, std::size_t from_index); // Присоединяет новую цепь data с индекса from
 
-    std::size_t is_block_in_chain(Tranche &block); // Возвращает индекс вхождения блока block в цепи
+    std::size_t is_block_in_chain(Tranche &block_to_find); // Возвращает индекс вхождения блока block в цепи
 
     friend ostream& operator<< (ostream &out, const Blockchain &chain); //для перегрузки оператора <<
 };
@@ -187,17 +197,84 @@ int Blockchain::print_last_message(const int n) {
     return 0;
 }
 
+int Blockchain::get_length(){
+    return chain.size();
+}
+
+Tranche Blockchain::get_block_by_index(std::size_t index) {
+    std::size_t current_index = 0;
+    for (auto block = chain.begin(); block != chain.end(); block++)
+    {
+        if (current_index == index)
+            return *block;
+        else
+            current_index++;
+    }
+}
+
+Blockchain Blockchain::send_data(std::size_t from_index) {
+    Blockchain data = Blockchain();
+    for (auto index = from_index; index != chain.size(); index++)
+    {
+        data.push(get_block_by_index(index));
+    }
+    return data;
+}
+
+int Blockchain::load_data(Blockchain data, std::size_t from_index) {
+    // очищаю блоки, сгенерированные после последней синхронизации
+    for (auto index = from_index; index != chain.size(); index++){
+        chain.pop_back();
+    }
+
+    // добавляю новый хвост цепи
+    for (auto index = 0; index != data.get_length(); index++ ){
+        chain.push_back(data.get_block_by_index(index));
+    }
+    return 0;
+}
+
+std::size_t Blockchain::is_block_in_chain(Tranche &block_to_find) {
+    for (auto block = chain.end(); block != chain.begin(); block--){
+        if (myhash(*block) == myhash(block_to_find)){
+            return block->index;
+        }
+    }
+    return -1;
+}
+
 Blockchain::~Blockchain() {
 
 };
 
-//хэш-функция(не дописанная): записывает в строку данные блока.
-string myhash(Tranche &block){
-    string str;
-    //time(&timestamp);
-    str = block.get_timestamp()+block.get_transactions() + to_string(block.get_nounce());
-    return str;
-};
+int synchronize(Blockchain &first_chain, Blockchain &second_chain){
+    if (first_chain.get_length() > second_chain.get_length()){
+        for (auto first_index = first_chain.get_length(); first_index != 0; first_index-- )
+        {
+            Tranche block_to_find = first_chain.get_block_by_index(first_index);
+            std::size_t second_index = second_chain.is_block_in_chain(block_to_find);
+            if (second_index != -1)
+            {
+                second_chain.load_data(first_chain.send_data(first_index), second_index);
+                return 0;
+            }
+        }
+        return 1;
+    }
+    else
+    {
+        for (auto second_index = second_chain.get_length(); second_index != 0; second_index--){
+            Tranche block_to_find = second_chain.get_block_by_index(second_index);
+            std::size_t first_index = first_chain.is_block_in_chain(block_to_find);
+            if (first_index != -1)
+            {
+                first_chain.load_data( second_chain.send_data(second_index), first_index);
+                return 0;
+            }
+        }
+        return 1;
+    }
+}
 
 int main() {
     time_t current1;
