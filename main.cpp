@@ -5,6 +5,8 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
+#include <stdexcept>
+#include<stdlib.h>
 
 using namespace std;
 
@@ -32,6 +34,9 @@ public:
     string get_transactions();
     uint64_t get_nounce();
     uint64_t get_hashValue();
+
+    friend ostream& operator<< (ostream &out, const Tranche &block);
+    friend istream& operator>>(istream &in, Tranche &block);
 };
 
 
@@ -65,7 +70,7 @@ ostream& operator<<(ostream &out, const Tranche &block) {
 }
 
 istream& operator>>(istream &in, Tranche &block){
-    in >> block.transactions >>block.timestamp >> block.nounce >> block.hashValue;
+    in >> block.timestamp >> block.transactions >> block.nounce >> block.hashValue;
     return in;
 };
 
@@ -117,11 +122,23 @@ public:
 public:
     Tranche get_last(); // Возвращает последний блок цепочки блокчейна
 
+public:
+    Tranche get_block_by_index(std::size_t index); // Возвращает блок по заданному индексу
+
+public:
+    Blockchain send_data(std::size_t from_index); // Возвращает цепь, начинающуюся с индекса from
+
+    int load_data(Blockchain data, std::size_t from_index); // Присоединяет новую цепь data с индекса from
+
+    std::size_t is_block_in_chain(Tranche &block); // Возвращает индекс вхождения блока block в цепи
+
     friend ostream& operator<< (ostream &out, const Blockchain &chain); //для перегрузки оператора <<
 };
 
+int synchronize(Blockchain &first_chain, Blockchain &second_chain); // Синхронизация двух блокчейнов
+
 Blockchain::Blockchain(){
-    std::list<Tranche> new_chain;
+    list<Tranche> new_chain;
     chain = new_chain;
 };
 
@@ -131,7 +148,8 @@ int Blockchain::push(const Tranche new_tail) {
 }
 
 Tranche Blockchain::pop() {
-    _List_iterator<Tranche> index = chain.end();
+    //_List_iterator<Tranche> index = chain.end();
+    auto index = chain.end();
     Tranche tail_block(*index); //здесь CLion попросил сделать деструктор Tranche public вместо private
     chain.pop_back();
     return tail_block;
@@ -181,26 +199,19 @@ string myhash(Tranche &block){
     return str;
 };
 
-//интерфейс синхронизации (протокола консенсуса)
-int send_data(string address, Blockchain my_blockchain); // Отправляет имеющийся блокчейн получателю на address, который состоит из IP и port
-int load_data(string address, Blockchain loaded_blockchain); // Загружает блокчейн отправителя (его IP и port в address)
-int send_length(string address, int length); // Отправляет длину блокчейна (length) получателю (его IP и port в address)
-int send_block(string address, Tranche block, int block_number); // Отправляет block и порядковый номер блока в цепочке
-                                                                 // (block_number) на address
-int send_success(string address); // Отправляет сообщение о получении блока на address
-
-
 int main() {
     time_t current1;
-    //cout<<hash1(current1, "X gave Y", nounce1)<<endl;
-    Tranche zero(time(&current1),"X gave $100 to Y", 6, 0);
+    time_t current2;
+    Tranche block_0(current1,"X gave $100 to Y", 6, 0);
+    Tranche block_1(current2,"Y gave $50 to Z", 9, 1);
     Blockchain test_chain;
-    Blockchain loaded_chain;
-    test_chain.push(zero);
-    test_chain.save_to_file("test_chain.txt");
-    loaded_chain.load_from_file("test_chain.txt");
-    Tranche one;
-    one = loaded_chain.pop();
-    cout<< one <<endl;
+    //Blockchain loaded_chain;
+    test_chain.push(block_0);
+    test_chain.push(block_1);
+    //cout<<test_chain;
+    //test_chain.save_to_file("test_chain.txt");
+    //loaded_chain.load_from_file("test_chain.txt");
+    //test_chain.pop();
+    //cout<< one <<endl;
     return 0;
 }
